@@ -115,7 +115,7 @@ cd /home/ubuntu && git clone ${var.repo_url}
 echo 'CD to data_engineering_project_template directory'
 cd data_engineering_project_template
 
-echo 'Start containers & Run db migrations''
+echo 'Start containers & Run db migrations'
 make up
 
 echo "-------------------------END SETUP---------------------------"

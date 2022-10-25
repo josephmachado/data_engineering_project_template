@@ -34,6 +34,7 @@ make infra-up # type in yes after verifying the changes TF will make
 
 # Wait until the EC2 instance is initialized, you can check this via your AWS UI
 # See "Status Check" on the EC2 console, it should be "2/2 checks passed" before proceeding
+# Wait another 5 mins, Airflow takes a while to start up
 
 make cloud-airflow # this command will forward Airflow port from EC2 to your machine and opens it in the browser
 # the user name and password are both airflow

@@ -10,7 +10,9 @@ perms:
 up: perms docker-spin-up warehouse-migration
 
 down:
-	docker compose down
+	docker compose down --volumes --rmi all
+
+restart: down up
 
 sh:
 	docker exec -ti webserver bash

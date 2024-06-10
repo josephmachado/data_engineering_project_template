@@ -28,9 +28,6 @@ __pycache__
 # policy
 trust-policy.json
 
-# data
-data*
-
 # logs
 logs/*
 *.log
@@ -80,3 +77,6 @@ override.tf.json
 terraform.rc
 Footer
 
+dashboard_files/
+
+data/*.csv

@@ -7,7 +7,7 @@ docker-spin-up:
 perms:
 	sudo mkdir -p logs plugins temp dags tests migrations data visualization && sudo chmod -R u=rwx,g=rwx,o=rwx logs plugins temp dags tests migrations data visualization
 
-up: perms docker-spin-up warehouse-migration
+up: perms docker-spin-up 
 
 down:
 	docker compose down --volumes --rmi all

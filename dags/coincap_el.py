@@ -10,7 +10,8 @@ from airflow.operators.bash import BashOperator
 
 with DAG(
     'coincap_el',
-    description='A simple DAG to fetch data from CoinCap Exchanges API and write to a file',
+    description='A simple DAG to fetch data \
+    from CoinCap Exchanges API and write to a file',
     schedule_interval=timedelta(days=1),
     start_date=datetime(2023, 1, 1),
     catchup=False,
@@ -32,9 +33,11 @@ with DAG(
                 dict_writer.writerows(exchanges)
 
     markdown_path = f'{os.getenv("AIRFLOW_HOME")}/visualization/'
+    q_cmd = (
+        f'cd {markdown_path} && quarto render {markdown_path}/dashboard.qmd'
+    )
     gen_dashboard = BashOperator(
-        task_id="generate_dashboard",
-        bash_command=f'cd {markdown_path} && quarto render {markdown_path}/dashboard.qmd',
+        task_id="generate_dashboard", bash_command=q_cmd
     )
 
     fetch_coincap_exchanges(url, file_path) >> gen_dashboard

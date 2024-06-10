@@ -2,6 +2,8 @@
 
 Detailed explanation can be found **[`in this post`](https://www.startdataengineering.com/post/data-engineering-projects-with-free-template/)**
 
+Dashboard rendered at: ./visualization/dashboard.html
+
 ## Prerequisites   
 
 To use the template, please install the following. 

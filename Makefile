@@ -2,7 +2,7 @@
 # Setup containers to run Airflow
 
 docker-spin-up:
-	docker compose --env-file env up airflow-init && docker compose --env-file env up --build -d
+	docker compose up airflow-init && docker compose up --build -d
 
 perms:
 	sudo mkdir -p logs plugins temp dags tests migrations data visualization && sudo chmod -R u=rwx,g=rwx,o=rwx logs plugins temp dags tests migrations data visualization
@@ -51,18 +51,6 @@ infra-down:
 
 infra-config:
 	terraform -chdir=./terraform output
-
-####################################################################################################################
-# Create tables in Warehouse
-
-db-migration:
-	@read -p "Enter migration name:" migration_name; docker exec webserver yoyo new ./migrations -m "$$migration_name"
-
-warehouse-migration:
-	docker exec webserver yoyo develop --no-config-file --database postgres://sdeuser:sdepassword1234@warehouse:5432/finance ./migrations
-
-warehouse-rollback:
-	docker exec webserver yoyo rollback --no-config-file --database postgres://sdeuser:sdepassword1234@warehouse:5432/finance ./migrations
 
 ####################################################################################################################
 # Port forwarding to local machine

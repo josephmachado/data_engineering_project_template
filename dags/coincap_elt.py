@@ -9,7 +9,7 @@ from airflow.decorators import task
 from airflow.operators.bash import BashOperator
 
 with DAG(
-    'coincap_el',
+    'coincap_elt',
     description='A simple DAG to fetch data \
     from CoinCap Exchanges API and write to a file',
     schedule_interval=timedelta(days=1),

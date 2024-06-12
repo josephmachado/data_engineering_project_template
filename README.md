@@ -34,10 +34,11 @@ git clone https://github.com/josephmachado/data_engineering_project_template.git
 cd data_engineering_project_template
 make up
 make ci # run checks and tests
+sleep 30 # wait for Airflow to start
 ```
 **Windows users**: please setup WSL and a local Ubuntu Virtual machine following **[the instructions here](https://ubuntu.com/tutorials/install-ubuntu-on-wsl2-on-windows-10#1-overview)**. Install the above prerequisites on your ubuntu terminal; if you have trouble installing docker, follow **[the steps here](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04#step-1-installing-docker)** (only Step 1 is necessary). Please install the **make** command with `sudo apt install make -y` (if its not already present). 
 
-Go to [http:localhost:8080](http:localhost:8080) to see the Airflow UI.
+Go to [http:localhost:8080](http:localhost:8080) to see the Airflow UI. Username and password are both `airflow`.
 
 ## Infrastructure
 
@@ -58,6 +59,8 @@ add: image
 ## Writing pipelines
 
 We have a sample pipeline at [coincap_elt.py](./dags/coincap_elt.py) that you can use as a starter to create your own DAGs. The tests are available at [./tests](./tests) folder.
+
+Once the `coincap_elt` DAG runs, we can see the dashboard html at [./visualizations/dashboard.html](./visualizations/dashboard.html) and will look like ![Dashboard](./assets/images/dash.png).
 
 ## Advanced cloud setup
 

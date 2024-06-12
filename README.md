@@ -55,7 +55,9 @@ For simplicity services 1-4 of the above are installed and run in one container 
 
 ## Using template
 
-add: image
+You can use this repo as a template and create your own, click on the `Use this template` button.
+
+![Template](./assets/images/template.png)
 
 ## Writing pipelines
 

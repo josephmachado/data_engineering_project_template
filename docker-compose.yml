@@ -12,11 +12,6 @@ x-airflow-common:
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__API__AUTH_BACKEND: 'airflow.api.auth.backend.basic_auth'
     AIRFLOW_CONN_POSTGRES_DEFAULT: postgres://airflow:airflow@postgres:5432/airflow
-    WAREHOUSE_USER: ${POSTGRES_USER}
-    WAREHOUSE_PASSWORD: ${POSTGRES_PASSWORD}
-    WAREHOUSE_DB: ${POSTGRES_DB}
-    WAREHOUSE_HOST: ${POSTGRES_HOST}
-    WARREHOUSE_PORT: ${POSTGRES_PORT}
 
   volumes:
     - ./dags:/opt/airflow/dags

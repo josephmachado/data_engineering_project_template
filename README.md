@@ -63,7 +63,7 @@ You can use this repo as a template and create your own, click on the `Use this 
 
 We have a sample pipeline at [coincap_elt.py](./dags/coincap_elt.py) that you can use as a starter to create your own DAGs. The tests are available at [./tests](./tests) folder.
 
-Once the `coincap_elt` DAG runs, we can see the dashboard html at [./visualizations/dashboard.html](./visualizations/dashboard.html) and will look like ![Dashboard](./assets/images/dash.png).
+Once the `coincap_elt` DAG runs, we can see the dashboard html at [./visualization/dashboard.html](./visualization/dashboard.html) and will look like ![Dashboard](./assets/images/dash.png).
 
 ## (Optional) Advanced cloud setup
 

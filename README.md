@@ -32,6 +32,8 @@ Start a code spaces, run `make up`, wait until its ready and click on the link i
 ![Codespace make up](./assets/images/cs2.png)
 ![Codespace open Airflow UI](./assets/images/cs3.png)
 
+**Note**: Make sure to turn off your codespaces when you are done, you only have a limited amount of free codespace use.
+
 ### Your machine
 
 Clone the repo and run the `make up` command as shown here:

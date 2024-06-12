@@ -1,0 +1,24 @@
+---
+title: "CoinCap Exchange Dashboard"
+author: "StartDataEngineering"
+format: dashboard
+---
+    
+## Row {height=70%}
+
+```{python}
+#| title: Coincap Exchange data analysis
+
+import pandas as pd
+import plotly.express as px
+import os
+# Load the CSV file
+file_path = f'{os.getenv("AIRFLOW_HOME")}/data/coincap_exchanges.csv'
+import duckdb
+
+clean_data = duckdb.sql(f"select name, volumeUsd from '{file_path}' order by 2 desc limit 10").df()
+# Plot the top 10 exchanges' volumeUSD
+fig = px.bar(clean_data, x='name', y='volumeUsd', title='Top 10 Exchanges by VolumeUSD')
+fig.show()
+ 
+```

@@ -62,6 +62,7 @@ This data engineering project template, includes the following:
 For simplicity services 1-4 of the above are installed and run in one container defined [here](./containers/airflow/Dockerfile).
 
 ![File strucutre](./assets/images/fs.png)
+![DET](./assets/images/det.png)
 
 ## Using template
 

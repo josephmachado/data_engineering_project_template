@@ -26,6 +26,12 @@ Detailed explanation can be found **[`in this post`](https://www.startdataengine
 
 ### Codespaces
 
+Start a code spaces, run `make up`, wait until its ready and click on the link in the Port tab to see the AirflowUI.
+
+![CodeSpace start](./assets/images/cs1.png)
+![Codespace make up](./assets/images/cs2.png)
+![Codespace open Airflow UI](./assets/images/cs3.png)
+
 ### Your machine
 
 Clone the repo and run the `make up` command as shown here:

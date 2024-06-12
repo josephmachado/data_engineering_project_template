@@ -1,4 +1,5 @@
 
+
 * [Data engineering project template](#data-engineering-project-template)
     * [Prerequisites](#prerequisites)
     * [Run code](#run-code)
@@ -7,7 +8,7 @@
     * [Infrastructure](#infrastructure)
     * [Using template](#using-template)
     * [Writing pipelines](#writing-pipelines)
-    * [Advanced cloud setup](#advanced-cloud-setup)
+    * [(Optional) Advanced cloud setup](#optional-advanced-cloud-setup)
         * [Prerequisites:](#prerequisites-1)
         * [Tear down infra](#tear-down-infra)
 
@@ -62,7 +63,7 @@ We have a sample pipeline at [coincap_elt.py](./dags/coincap_elt.py) that you ca
 
 Once the `coincap_elt` DAG runs, we can see the dashboard html at [./visualizations/dashboard.html](./visualizations/dashboard.html) and will look like ![Dashboard](./assets/images/dash.png).
 
-## Advanced cloud setup
+## (Optional) Advanced cloud setup
 
 If you want to run your code on an EC2 instance, with terraform, follow the steps below.
 

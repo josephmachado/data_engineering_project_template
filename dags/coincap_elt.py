@@ -61,4 +61,4 @@ with DAG(
     )
 
     fetch_coincap_exchanges(url, file_path) >> check_data_quality_instance >> gen_dashboard
-    fetch_coincap_exchanges(url, file_path) >> check_data_quality_instance >> stop_pipeline
+    check_data_quality_instance >> stop_pipeline

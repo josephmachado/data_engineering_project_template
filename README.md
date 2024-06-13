@@ -1,55 +1,57 @@
 
-
 * [Data engineering project template](#data-engineering-project-template)
-    * [Prerequisites](#prerequisites)
-    * [Run code](#run-code)
-        * [Codespaces](#codespaces)
-        * [Your machine](#your-machine)
-    * [Infrastructure](#infrastructure)
+    * [Run Data Pipeline](#run-data-pipeline)
+        * [Run on codespaces](#run-on-codespaces)
+        * [Run locally](#run-locally)
+    * [Architecture and services in this template](#architecture-and-services-in-this-template)
     * [Using template](#using-template)
     * [Writing pipelines](#writing-pipelines)
     * [(Optional) Advanced cloud setup](#optional-advanced-cloud-setup)
-        * [Prerequisites:](#prerequisites-1)
+        * [Prerequisites:](#prerequisites)
         * [Tear down infra](#tear-down-infra)
+
 
 # Data engineering project template
 
 Detailed explanation can be found **[`in this post`](https://www.startdataengineering.com/post/data-engineering-projects-with-free-template/)**
 
-## Prerequisites
+## Run Data Pipeline
+
+Code available at **[data_engineering_project_template](https://github.com/josephmachado/data_engineering_project_template/tree/main?tab=readme-ov-file#data-engineering-project-template)** repository.
+
+### Run on codespaces
+
+You can run this data pipeline using GitHub codespaces. Follow the instructions below.
+
+1. Create codespaces by going to the **[data_engineering_project_template](https://github.com/josephmachado/data_engineering_project_template/tree/main?tab=readme-ov-file#data-engineering-project-template)** repository, cloning it(or click `Use this template` button) and then clicking on `Create codespaces on main` button.
+2. Wait for codespaces to start, then in the terminal type `make up`.
+3. Wait for `make up` to complete, and then wait for 30s (for Airflow to start).
+4. After 30s go to the `ports` tab and click on the link exposing port `8080` to access Airflow UI (username and password is `airflow`).
+
+![codespaces start](./assets/images/de-project-template/cs1.png)
+![codespaces make up](./assets/images/de-project-template/cs2.png)
+![codespaces open url](./assets/images/de-project-template/cs3.png)
+
+### Run locally
+
+To run locally, you need:
 
 1. [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 2. [Github account](https://github.com/)
 3. [Docker](https://docs.docker.com/engine/install/) with at least 4GB of RAM and [Docker Compose](https://docs.docker.com/compose/install/) v1.27.0 or later
 
-## Run code
-
-### Codespaces
-
-Start a code spaces, run `make up`, wait until its ready and click on the link in the Port tab to see the AirflowUI.
-
-![CodeSpace start](./assets/images/cs1.png)
-![Codespace make up](./assets/images/cs2.png)
-![Codespace open Airflow UI](./assets/images/cs3.png)
-
-**Note**: Make sure to turn off your codespaces when you are done, you only have a limited amount of free codespace use.
-
-### Your machine
-
-Clone the repo and run the `make up` command as shown here:
+Clone the repo and run the following commands to start the data pipeline:
 
 ```bash
 git clone https://github.com/josephmachado/data_engineering_project_template.git
 cd data_engineering_project_template
 make up
-make ci # run checks and tests
 sleep 30 # wait for Airflow to start
+make ci # run checks and tests
 ```
-**Windows users**: please setup WSL and a local Ubuntu Virtual machine following **[the instructions here](https://ubuntu.com/tutorials/install-ubuntu-on-wsl2-on-windows-10#1-overview)**. Install the above prerequisites on your ubuntu terminal; if you have trouble installing docker, follow **[the steps here](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04#step-1-installing-docker)** (only Step 1 is necessary). Please install the **make** command with `sudo apt install make -y` (if its not already present). 
-
 Go to [http:localhost:8080](http:localhost:8080) to see the Airflow UI. Username and password are both `airflow`.
 
-## Infrastructure
+## Architecture and services in this template
 
 This data engineering project template, includes the following:
 
@@ -57,12 +59,22 @@ This data engineering project template, includes the following:
 2. **`Postgres`**: To store Airflow's details (which you can see via Airflow UI) and also has a schema to represent upstream databases.
 3. **`DuckDB`**: To act as our warehouse
 4. **`Quarto with Plotly`**: To convert code in `markdown` format to html files that can be embedded in your app or servered as is.
-5. **`minio`**: To provide an S3 compatible open source storage system.
+5. **`cuallee`**: To run data quality checks on the data we extracted from CoinCap API.
+6. **`minio`**: To provide an S3 compatible open source storage system.
 
-For simplicity services 1-4 of the above are installed and run in one container defined [here](./containers/airflow/Dockerfile).
+For simplicity services 1-5 of the above are installed and run in one container defined [here](./containers/airflow/Dockerfile).
 
-![File strucutre](./assets/images/fs.png)
-![DET](./assets/images/det.png)
+![DET](./assets/images/de-project-template/det2.png)
+
+The `coincap_elt` DAG in the [Airflow UI](http://localhost:8080) will look like the below image:
+
+![DAG](./assets/images/de-project-template/dag.png)
+
+You can see the rendered html at [./visualizations/dashboard.html](https://github.com/josephmachado/data_engineering_project_template/blob/main/visualization/dashboard.html).
+
+The file structure of our repo is as shown below:
+
+![File strucutre](./assets/images/de-project-template/fs.png)
 
 ## Using template
 

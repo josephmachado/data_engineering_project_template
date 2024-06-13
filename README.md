@@ -28,9 +28,9 @@ You can run this data pipeline using GitHub codespaces. Follow the instructions 
 3. Wait for `make up` to complete, and then wait for 30s (for Airflow to start).
 4. After 30s go to the `ports` tab and click on the link exposing port `8080` to access Airflow UI (username and password is `airflow`).
 
-![codespaces start](./assets/images/de-project-template/cs1.png)
-![codespaces make up](./assets/images/de-project-template/cs2.png)
-![codespaces open url](./assets/images/de-project-template/cs3.png)
+![codespaces start](./assets/images/cs1.png)
+![codespaces make up](./assets/images/cs2.png)
+![codespaces open url](./assets/images/cs3.png)
 
 ### Run locally
 
@@ -64,17 +64,17 @@ This data engineering project template, includes the following:
 
 For simplicity services 1-5 of the above are installed and run in one container defined [here](./containers/airflow/Dockerfile).
 
-![DET](./assets/images/de-project-template/det2.png)
+![DET](./assets/images/det2.png)
 
 The `coincap_elt` DAG in the [Airflow UI](http://localhost:8080) will look like the below image:
 
-![DAG](./assets/images/de-project-template/dag.png)
+![DAG](./assets/images/dag.png)
 
 You can see the rendered html at [./visualizations/dashboard.html](https://github.com/josephmachado/data_engineering_project_template/blob/main/visualization/dashboard.html).
 
 The file structure of our repo is as shown below:
 
-![File strucutre](./assets/images/de-project-template/fs.png)
+![File strucutre](./assets/images/fs.png)
 
 ## Using template
 

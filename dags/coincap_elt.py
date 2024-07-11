@@ -2,13 +2,13 @@ import csv
 import os
 from datetime import datetime, timedelta
 
+import polars as pl
 import requests
+from cuallee import Check, CheckLevel
 
 from airflow import DAG
 from airflow.decorators import task
 from airflow.operators.bash import BashOperator
-from cuallee import Check, CheckLevel
-import polars as pl
 from airflow.operators.dummy import DummyOperator
 
 with DAG(
@@ -37,18 +37,18 @@ with DAG(
 
     def check_completeness(pl_df, column_name):
         check = Check(CheckLevel.ERROR, "Completeness")
-        validation_results_df = (
-            check.is_complete(column_name).validate(pl_df)
-        )
+        validation_results_df = check.is_complete(column_name).validate(pl_df)
         return validation_results_df["status"].to_list()
-    
+
     @task.branch
     def check_data_quality(validation_results):
         if "FAIL" not in validation_results:
             return ['generate_dashboard']
         return ['stop_pipeline']
-    
-    check_data_quality_instance = check_data_quality(check_completeness(pl.read_csv(file_path), "name"))
+
+    check_data_quality_instance = check_data_quality(
+        check_completeness(pl.read_csv(file_path), "name")
+    )
 
     stop_pipeline = DummyOperator(task_id='stop_pipeline')
 
@@ -60,5 +60,9 @@ with DAG(
         task_id="generate_dashboard", bash_command=q_cmd
     )
 
-    fetch_coincap_exchanges(url, file_path) >> check_data_quality_instance >> gen_dashboard
+    (
+        fetch_coincap_exchanges(url, file_path)
+        >> check_data_quality_instance
+        >> gen_dashboard
+    )
     check_data_quality_instance >> stop_pipeline
